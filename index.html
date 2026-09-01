@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MONKEY KING (MKK)</title>
+  
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/LshVMP3T/674518374-1555159763283113-4516365265781423156-n.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -34,7 +36,6 @@
     .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
     .nav-links a:hover{color:var(--red-light)}
 
-    /* HERO SECTION */
     .hero{text-align:center;padding:7rem 2rem 6rem;position:relative;overflow:hidden}
     .hero::before {
       content: '';
@@ -73,7 +74,6 @@
     .search-wrap input::placeholder{color:#553333}
     .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem}
     
-    /* MEMBER CARDS */
     .members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
     .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease}
     .member-card:hover{border-color:rgba(255,42,42,.5);transform:translateY(-2px)}
@@ -102,13 +102,12 @@
     .member-avatar img{width:100%;height:100%;object-fit:cover}
     .member-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:10px;line-height:1.3}
     
-    /* CARD ACTIONS - เรียงคนละบรรทัด (แนวตั้ง) */
     .card-actions{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:8px}
     .action-btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;font-size:10px;padding:5px 12px;border-radius:20px;text-decoration:none;font-family:'Space Mono',monospace;transition:all .2s;font-weight:700;width:100%;max-width:110px}
     .fb-btn{color:var(--red-light);border:1px solid rgba(255,42,42,.3);background:rgba(255,42,42,.05)}
     .fb-btn:hover{background:rgba(255,42,42,.2);color:#fff}
     
-    /* STREAM PLATFORM & REALTIME LIVE STYLES */
+    /* STREAM PLATFORM BUTTONS (สภาวะปกติ) */
     .stream-btn{color:#fff;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
     .stream-btn.kick{color:#53fc18;border-color:rgba(83,252,24,.4);background:rgba(83,252,24,.08)}
     .stream-btn.kick:hover{background:#53fc18;color:#000}
@@ -119,25 +118,61 @@
     .stream-btn.tiktok{color:#25f4ee;border-color:rgba(37,244,238,.4);background:rgba(37,244,238,.08)}
     .stream-btn.tiktok:hover{background:#25f4ee;color:#000}
 
-    /* REALTIME LIVE HIGHLIGHT STYLE */
+    /* REALTIME LIVE HIGHLIGHTS (แยกสีเฉพาะแพลตฟอร์ม) */
     .member-card.is-live-now {
-      border-color: #ff2a2a !important;
-      box-shadow: 0 0 20px rgba(255, 42, 42, 0.4);
-      background: linear-gradient(145deg, #260a0a, #160d0d);
+      border-color: rgba(255, 255, 255, 0.4) !important;
+      background: linear-gradient(145deg, #1f1111, #160d0d);
       order: -1;
     }
+    
     .member-card.is-live-now .stream-btn {
-      background: #ff2a2a !important;
-      color: #fff !important;
-      border-color: #ff2a2a !important;
-      animation: livePulse 1.5s infinite;
-    }
-    @keyframes livePulse {
-      0%, 100% { box-shadow: 0 0 5px rgba(255,42,42,0.8); }
-      50% { box-shadow: 0 0 18px rgba(255,42,42,1); }
+      animation-duration: 1.5s !important;
+      animation-iteration-count: infinite !important;
+      animation-timing-function: ease-in-out !important;
     }
 
-    /* CONTACT SECTION */
+    .member-card.is-live-now .stream-btn.kick {
+      background: #53fc18 !important;
+      color: #000 !important;
+      border-color: #53fc18 !important;
+      animation-name: livePulseKick;
+    }
+    .member-card.is-live-now .stream-btn.twitch {
+      background: #a970ff !important;
+      color: #fff !important;
+      border-color: #a970ff !important;
+      animation-name: livePulseTwitch;
+    }
+    .member-card.is-live-now .stream-btn.youtube {
+      background: #ff4e4e !important;
+      color: #fff !important;
+      border-color: #ff4e4e !important;
+      animation-name: livePulseYT;
+    }
+    .member-card.is-live-now .stream-btn.tiktok {
+      background: #25f4ee !important;
+      color: #000 !important;
+      border-color: #25f4ee !important;
+      animation-name: livePulseTikTok;
+    }
+
+    @keyframes livePulseKick {
+      0%, 100% { box-shadow: 0 0 8px rgba(83,252,24,0.8); }
+      50% { box-shadow: 0 0 22px rgba(83,252,24,1); }
+    }
+    @keyframes livePulseTwitch {
+      0%, 100% { box-shadow: 0 0 8px rgba(169,112,255,0.8); }
+      50% { box-shadow: 0 0 22px rgba(169,112,255,1); }
+    }
+    @keyframes livePulseYT {
+      0%, 100% { box-shadow: 0 0 8px rgba(255,78,78,0.8); }
+      50% { box-shadow: 0 0 22px rgba(255,78,78,1); }
+    }
+    @keyframes livePulseTikTok {
+      0%, 100% { box-shadow: 0 0 8px rgba(37,244,238,0.8); }
+      50% { box-shadow: 0 0 22px rgba(37,244,238,1); }
+    }
+
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     @media(max-width:500px){.contact-grid{grid-template-columns:1fr}.members-grid,.group-inner{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
     .social-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color .2s,transform .15s}
@@ -227,7 +262,6 @@ function getInitials(name) {
   return p.length >= 2 ? (p[0][0]+p[1][0]).toUpperCase() : (name||'MKK').slice(0,2).toUpperCase();
 }
 
-// ====== REALTIME STREAM CHECKER (KICK & TWITCH) ======
 function extractUsername(url) {
   if (!url) return '';
   const clean = url.trim().replace(/\/$/, '');
@@ -257,14 +291,14 @@ async function checkTwitchLive(username) {
 }
 
 async function updateRealtimeStatus() {
-  const cards = document.querySelectorAll('.member-card[data-stream]');
-  cards.forEach(async (card) => {
+  const cards = Array.from(document.querySelectorAll('.member-card[data-stream]'));
+  
+  const statusResults = await Promise.all(cards.map(async (card) => {
     const streamUrl = card.dataset.stream;
-    const platform = card.dataset.platform.toUpperCase();
-    const btn = card.querySelector('.stream-btn');
+    const platform = (card.dataset.platform || '').toUpperCase();
     const username = extractUsername(streamUrl);
 
-    if (!username) return;
+    if (!username) return { card, isLive: false, platform };
 
     let isLive = false;
     if (platform.includes('KICK')) {
@@ -273,6 +307,15 @@ async function updateRealtimeStatus() {
       isLive = await checkTwitchLive(username);
     }
 
+    return { card, isLive, platform };
+  }));
+
+  document.querySelectorAll('.stream-btn').forEach(btn => {
+    btn.style.animation = 'none';
+  });
+
+  statusResults.forEach(({ card, isLive, platform }) => {
+    const btn = card.querySelector('.stream-btn');
     if (isLive) {
       card.classList.add('is-live-now');
       if (btn) btn.innerHTML = '🔴 LIVE NOW';
@@ -281,12 +324,18 @@ async function updateRealtimeStatus() {
       if (btn) {
         if (platform.includes('KICK')) btn.innerHTML = '🟢 KICK';
         else if (platform.includes('TWITCH')) btn.innerHTML = '🟣 TWITCH';
+        else if (platform.includes('YOUTUBE')) btn.innerHTML = '🔴 YOUTUBE';
+        else if (platform.includes('TIKTOK')) btn.innerHTML = '⚫ TIKTOK';
       }
     }
   });
+
+  void document.body.offsetHeight;
+  document.querySelectorAll('.member-card.is-live-now .stream-btn').forEach(btn => {
+    btn.style.animation = '';
+  });
 }
 
-// ====== MEMBERS ======
 let allMembers = [];
 
 function makeCard(m, extraClass) {
@@ -343,7 +392,7 @@ function makeCard(m, extraClass) {
     '<div class="member-avatar">' + avatarInner + '</div>' +
     '<div class="member-name">' + m.name + '</div>' +
     '<div class="card-actions">' +
-      '<a class="action-btn fb-btn" href="' + fbUrl + '" target="_blank" rel="noopener">FACEBOOK</a>' +
+      '<a class="action-btn fb-btn" href="' + fbUrl + '" target="_blank" rel="noopener">FB</a>' +
       streamBtn +
     '</div>';
   return card;
@@ -442,7 +491,6 @@ function filterMembers() {
   document.getElementById('resultCount').textContent = 'แสดง ' + count + ' / ' + allMembers.length + ' คน';
 }
 
-// ====== CONTACT ======
 const FB_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#ff2a2a"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
 const DC_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#ff2a2a"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.031.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084-.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>';
 
@@ -493,7 +541,6 @@ function refreshAll() {
   loadSocial('contacts', 'contactContainer', 'ยังไม่มีข้อมูลในแท็บ contacts');
 }
 
-// ====== YouTube Background + Enter ======
 var tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
