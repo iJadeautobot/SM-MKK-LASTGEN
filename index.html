@@ -107,7 +107,7 @@
     .fb-btn{color:var(--red-light);border:1px solid rgba(255,42,42,.3);background:rgba(255,42,42,.05)}
     .fb-btn:hover{background:rgba(255,42,42,.2);color:#fff}
     
-    /* STREAM PLATFORM BUTTONS (สภาวะปกติ) */
+    /* STREAM PLATFORM BUTTONS */
     .stream-btn{color:#fff;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
     .stream-btn.kick{color:#53fc18;border-color:rgba(83,252,24,.4);background:rgba(83,252,24,.08)}
     .stream-btn.kick:hover{background:#53fc18;color:#000}
@@ -118,7 +118,7 @@
     .stream-btn.tiktok{color:#25f4ee;border-color:rgba(37,244,238,.4);background:rgba(37,244,238,.08)}
     .stream-btn.tiktok:hover{background:#25f4ee;color:#000}
 
-    /* REALTIME LIVE HIGHLIGHTS (แยกสีเฉพาะแพลตฟอร์ม) */
+    /* REALTIME LIVE HIGHLIGHTS */
     .member-card.is-live-now {
       border-color: rgba(255, 255, 255, 0.4) !important;
       background: linear-gradient(145deg, #1f1111, #160d0d);
@@ -340,15 +340,8 @@ let allMembers = [];
 
 function makeCard(m, extraClass) {
   extraClass = extraClass || '';
-  const isFounder = m.role === 'founder';
-  const isLeader = m.role === 'leader';
   const fbUrl = m.facebook || ('https://www.facebook.com/search/people/?q=' + encodeURIComponent(m.name));
   const initials = getInitials(m.name);
-  
-  const badge = isFounder
-    ? '<div class="role-badge badge-founder">FOUNDER</div>'
-    : isLeader
-    : '';
 
   const avatarInner = m.img
     ? '<img src="' + m.img + '" alt="' + m.name + '" onerror="this.style.display=\'none\'">'
@@ -387,7 +380,7 @@ function makeCard(m, extraClass) {
     card.dataset.platform = m.platform || '';
   }
 
-  card.innerHTML = badge +
+  card.innerHTML = 
     '<div class="member-avatar">' + avatarInner + '</div>' +
     '<div class="member-name">' + m.name + '</div>' +
     '<div class="card-actions">' +
