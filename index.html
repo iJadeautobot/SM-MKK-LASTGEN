@@ -249,9 +249,9 @@ function makeCard(m, extraClass) {
       label = '🔴 YOUTUBE';
     } else if (pf.includes('TIKTOK')) {
       pfClass = 'tiktok';
-      label = '🎵 TIKTOK';
+      label = '⚫ TIKTOK';
     } else if (pf) {
-      label = '🔴 ' + pf;
+      label = '🔘 ' + pf;
     }
 
     streamBtn = '<a class="action-btn stream-btn ' + pfClass + '" href="' + m.stream + '" target="_blank" rel="noopener">' + label + '</a>';
