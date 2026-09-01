@@ -106,11 +106,20 @@
     
     /* BUTTONS AREA IN CARDS */
     .card-actions{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px}
-    .action-btn{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:4px 10px;border-radius:20px;text-decoration:none;font-family:'Space Mono',monospace;transition:all .2s}
+    .action-btn{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:4px 10px;border-radius:20px;text-decoration:none;font-family:'Space Mono',monospace;transition:all .2s;font-weight:700}
     .fb-btn{color:var(--red-light);border:1px solid rgba(255,42,42,.3);background:rgba(255,42,42,.05)}
     .fb-btn:hover{background:rgba(255,42,42,.2);color:#fff}
-    .stream-btn{color:#fff;border:1px solid rgba(255,208,0,.4);background:rgba(255,208,0,.1)}
-    .stream-btn:hover{background:var(--gold);color:#000}
+    
+    /* STREAM PLATFORM BUTTON STYLES */
+    .stream-btn{color:#fff;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
+    .stream-btn.kick{color:#53fc18;border-color:rgba(83,252,24,.4);background:rgba(83,252,24,.08)}
+    .stream-btn.kick:hover{background:#53fc18;color:#000}
+    .stream-btn.twitch{color:#a970ff;border-color:rgba(169,112,255,.4);background:rgba(169,112,255,.08)}
+    .stream-btn.twitch:hover{background:#a970ff;color:#fff}
+    .stream-btn.youtube{color:#ff4e4e;border-color:rgba(255,78,78,.4);background:rgba(255,78,78,.08)}
+    .stream-btn.youtube:hover{background:#ff4e4e;color:#fff}
+    .stream-btn.tiktok{color:#25f4ee;border-color:rgba(37,244,238,.4);background:rgba(37,244,238,.08)}
+    .stream-btn.tiktok:hover{background:#25f4ee;color:#000}
 
     /* CONTACT SECTION */
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -222,10 +231,30 @@ function makeCard(m, extraClass) {
     ? '<img src="' + m.img + '" alt="' + m.name + '" onerror="this.style.display=\'none\'">'
     : initials;
 
-  // Stream Link Handling
+  // Stream Link & Platform Handling (Column E & F)
   let streamBtn = '';
   if (m.stream) {
-    streamBtn = '<a class="action-btn stream-btn" href="' + m.stream + '" target="_blank" rel="noopener">🔴 LIVE</a>';
+    const pf = (m.platform || '').toUpperCase();
+    let pfClass = '';
+    let label = '🔴 LIVE';
+
+    if (pf.includes('KICK')) {
+      pfClass = 'kick';
+      label = '🟢 KICK';
+    } else if (pf.includes('TWITCH')) {
+      pfClass = 'twitch';
+      label = '🟣 TWITCH';
+    } else if (pf.includes('YOUTUBE')) {
+      pfClass = 'youtube';
+      label = '🔴 YOUTUBE';
+    } else if (pf.includes('TIKTOK')) {
+      pfClass = 'tiktok';
+      label = '🎵 TIKTOK';
+    } else if (pf) {
+      label = '🔴 ' + pf;
+    }
+
+    streamBtn = '<a class="action-btn stream-btn ' + pfClass + '" href="' + m.stream + '" target="_blank" rel="noopener">' + label + '</a>';
   }
 
   const card = document.createElement('div');
@@ -249,14 +278,15 @@ async function loadMembers() {
     let num = 1;
     rows.forEach(function(row) {
       const c = row.c || [];
-      const name = (c[0] && c[0].v) ? c[0].v.toString().trim() : '';
-      const role = (c[1] && c[1].v) ? c[1].v.toString().trim().toLowerCase() : 'member';
-      const img  = (c[2] && c[2].v) ? c[2].v.toString().trim() : '';
-      const facebook = (c[3] && c[3].v) ? c[3].v.toString().trim() : '';
-      const stream = (c[4] && c[4].v) ? c[4].v.toString().trim() : ''; // Column E for Stream URL
+      const name = (c[0] && c[0].v) ? c[0].v.toString().trim() : '';      // คอลัมน์ A
+      const role = (c[1] && c[1].v) ? c[1].v.toString().trim().toLowerCase() : 'member'; // คอลัมน์ B
+      const img  = (c[2] && c[2].v) ? c[2].v.toString().trim() : '';      // คอลัมน์ C
+      const facebook = (c[3] && c[3].v) ? c[3].v.toString().trim() : ''; // คอลัมน์ D
+      const stream   = (c[4] && c[4].v) ? c[4].v.toString().trim() : ''; // คอลัมน์ E (Stream URL)
+      const platform = (c[5] && c[5].v) ? c[5].v.toString().trim() : ''; // คอลัมน์ F (Stream Platform)
 
       if (!name) return;
-      const m = {n: num++, name: name, role: role, img: img, facebook: facebook, stream: stream};
+      const m = {n: num++, name: name, role: role, img: img, facebook: facebook, stream: stream, platform: platform};
       if (role === 'founder') founders.push(m);
       else if (role === 'leader') leaders.push(m);
       else members.push(m);
