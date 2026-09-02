@@ -60,35 +60,35 @@
     .divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,42,42,.2),transparent);margin:0 2rem}
     
     .section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
-    .section-title{font-size:28px;font-weight:700;margin-bottom:.5rem;letter-spacing:-.5px;color:#fff}
-    .section-desc{color:var(--muted);font-size:14px;margin-bottom:1.75rem}
+    .section-title{font-size:28px;font-weight:700;margin-bottom:.5rem;letter-spacing:-.5px;color:#fff;text-align:center}
+    .section-desc{color:var(--muted);font-size:14px;margin-bottom:1.75rem;text-align:center}
     .loading-state{text-align:center;padding:3rem;color:var(--muted);font-family:'Space Mono',monospace;font-size:13px}
     .loading-spinner{width:30px;height:30px;border:2px solid rgba(255,42,42,.2);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
     @keyframes spin{to{transform:rotate(360deg)}}
     .error-state{text-align:center;padding:2rem;color:#ff6b6b;font-family:'Space Mono',monospace;font-size:12px;border:1px solid rgba(255,107,107,.2);border-radius:12px;background:rgba(255,107,107,.05)}
     
-    .search-wrap{position:relative;margin-bottom:1rem}
+    .search-wrap{position:relative;margin:0 auto 1rem;max-width:500px}
     .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none}
     .search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px 12px 42px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
     .search-wrap input:focus{border-color:rgba(255,42,42,.5)}
     .search-wrap input::placeholder{color:#553333}
-    .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem}
+    .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem;text-align:center}
     
-    .members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+    .members-grid{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
     .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease;position:relative;overflow:hidden;}
     .member-card:hover{border-color:rgba(255,42,42,.5);transform:translateY(-2px)}
-    .member-card.hidden{display:none}
+    .member-card.hidden{display:none !important}
     
     /* สไตล์การ์ด FOUNDER และไอคอนมงกุฎมุมขวาบน */
-    .member-card.founder{border-color:rgba(255,208,0,.5);background:linear-gradient(145deg,#160d0d,#261505);grid-column:1/-1}
+    .member-card.founder{border-color:rgba(255,208,0,.5);background:linear-gradient(145deg,#160d0d,#261505);width:100%;max-width:400px}
     .member-card.founder .member-avatar{width:80px;height:80px;font-size:24px;background:linear-gradient(135deg,#a07800,#ffd000);color:#1a1200}
     .member-card.founder .member-name{font-size:18px}
     .crown-icon {
       position: absolute;
       top: -10px;
       right: -10px;
-      width: 100ppx;
-      height: 100px;
+      width: 65px;
+      height: 65px;
       fill: var(--gold);
       transform: rotate(25deg);
       filter: drop-shadow(0 0 6px rgba(255, 208, 0, 0.5));
@@ -96,14 +96,17 @@
       z-index: 5;
     }
     
-    .group-section{grid-column:1/-1;border-radius:14px;padding:1.2rem}
+    .group-section{width:100%;border-radius:14px;padding:1.5rem 1.2rem}
     .group-section.leaders{background:rgba(255,208,0,.03);border:1px solid rgba(255,208,0,.15)}
     .group-section.members-group{background:rgba(255,42,42,.02);border:1px solid rgba(255,42,42,.12)}
-    .group-title{font-size:11px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+    .group-title{font-size:12px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;text-align:center}
     .group-section.leaders .group-title{color:var(--gold)}
     .group-section.members-group .group-title{color:var(--red-light)}
     
-    .group-inner{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+    /* จัดการ์ดย่อยให้อยู่ตรงกลางทุกกรณี */
+    .group-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+    .group-inner .member-card{flex:0 0 calc(16.666% - 12px);min-width:150px;max-width:180px}
+    
     .member-card.co-leader{border-color:rgba(255,208,0,.25);background:rgba(255,208,0,.02)}
     .member-card.co-leader .member-avatar{background:linear-gradient(135deg,#800000,#ff2a2a);color:#fff}
     
@@ -187,7 +190,11 @@
     }
 
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    @media(max-width:500px){.contact-grid{grid-template-columns:1fr}.members-grid,.group-inner{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+    @media(max-width:600px){
+      .contact-grid{grid-template-columns:1fr}
+      .group-inner .member-card{flex:0 0 calc(50% - 10px);min-width:130px}
+    }
+    
     .social-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color .2s,transform .15s}
     .social-card:hover{transform:translateY(-2px);border-color:rgba(255,42,42,.4)}
     .social-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,42,42,.1)}
@@ -228,8 +235,6 @@
 <div class="divider"></div>
 
 <div class="section" id="members">
-  <!--h2 class="section-title">ALL MEMBERS</h2-->
-  <!--p class="section-desc" id="memberDesc">กำลังโหลดข้อมูลจาก Google Sheets...</p-->
   <div class="search-wrap" id="searchWrap" style="display:none">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#886666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="text" id="searchInput" placeholder="ค้นหาสมาชิก MKK..." oninput="filterMembers()">
@@ -385,7 +390,6 @@ function makeCard(m, extraClass) {
     streamBtn = '<a class="action-btn stream-btn ' + pfClass + '" href="' + m.stream + '" target="_blank" rel="noopener">' + label + '</a>';
   }
 
-  // สร้างไอคอนมงกุฎกรณีที่เป็น Founder
   let crownHtml = '';
   if (extraClass.includes('founder')) {
     crownHtml = '<svg class="crown-icon" viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>';
@@ -438,8 +442,6 @@ async function loadMembers() {
     
     const total = allMembers.length;
     document.getElementById('liveCount').textContent = total + ' PLAYERS';
-    //document.getElementById('memberDesc').textContent = total + ' Players In MKK LAST GEN';
-    //document.getElementById('resultCount').textContent = 'แสดง ' + total + ' / ' + total + ' คน';
     document.getElementById('searchWrap').style.display = '';
     
     const grid = document.createElement('div');
