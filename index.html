@@ -75,25 +75,34 @@
     .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem;text-align:center}
     
     .members-grid{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
-    .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease;position:relative;overflow:hidden;}
+    
+    /* ตั้งค่าการ์ดทั่วไป - เปิด overflow:visible ให้มงกุฎยื่นออกได้ */
+    .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease;position:relative;overflow:visible;}
     .member-card:hover{border-color:rgba(255,42,42,.5);transform:translateY(-2px)}
     .member-card.hidden{display:none !important}
     
-    /* สไตล์การ์ด FOUNDER และไอคอนมงกุฎมุมขวาบน */
-    .member-card.founder{border-color:rgba(255,208,0,.5);background:linear-gradient(145deg,#160d0d,#261505);width:100%;max-width:400px}
+    /* สไตล์การ์ด FOUNDER - ปรับความกว้างเป็น 100% เต็มกรอบ */
+    .member-card.founder{
+      border-color:rgba(255,208,0,.5);
+      background:linear-gradient(145deg,#160d0d,#261505);
+      width:100%;
+      max-width:100%;
+    }
     .member-card.founder .member-avatar{width:80px;height:80px;font-size:24px;background:linear-gradient(135deg,#a07800,#ffd000);color:#1a1200}
     .member-card.founder .member-name{font-size:18px}
+    
+    /* ไอคอนมงกุฎ ลอยอยู่นอกมุมขวาบน */
     .crown-icon {
       position: absolute;
-      top: -10px;
-      right: -10px;
+      top: -22px;
+      right: -18px;
       width: 65px;
       height: 65px;
       fill: var(--gold);
       transform: rotate(25deg);
-      filter: drop-shadow(0 0 6px rgba(255, 208, 0, 0.5));
+      filter: drop-shadow(0 0 8px rgba(255, 208, 0, 0.7));
       pointer-events: none;
-      z-index: 5;
+      z-index: 10;
     }
     
     .group-section{width:100%;border-radius:14px;padding:1.5rem 1.2rem}
@@ -424,7 +433,7 @@ async function loadMembers() {
       const c = row.c || [];
       const name = (c[0] && c[0].v) ? c[0].v.toString().trim() : '';
       const role = (c[1] && c[1].v) ? c[1].v.toString().trim().toLowerCase() : 'member';
-      const img  = (c[2] && c[2].v) ? c[2].v.toString().trim() : '';
+      const img   = (c[2] && c[2].v) ? c[2].v.toString().trim() : '';
       const facebook = (c[3] && c[3].v) ? c[3].v.toString().trim() : '';
       const stream   = (c[4] && c[4].v) ? c[4].v.toString().trim() : '';
       const platform = (c[5] && c[5].v) ? c[5].v.toString().trim() : '';
