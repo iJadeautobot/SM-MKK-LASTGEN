@@ -67,21 +67,20 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     .error-state{text-align:center;padding:2rem;color:#ff6b6b;font-family:'Space Mono',monospace;font-size:12px;border:1px solid rgba(255,107,107,.2);border-radius:12px;background:rgba(255,107,107,.05)}
     
-    .search-wrap{position:relative;margin:0 auto 1rem;max-width:500px}
+    /* ส่วนค้นหาปรับชิดซ้าย */
+    .search-wrap{position:relative;margin:0 auto 0.5rem 0;max-width:500px;width:100%}
     .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none}
     .search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px 12px 42px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
     .search-wrap input:focus{border-color:rgba(255,42,42,.5)}
     .search-wrap input::placeholder{color:#553333}
-    .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem;text-align:center}
+    .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem;text-align:left}
     
     .members-grid{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
     
-    /* ตั้งค่าการ์ดทั่วไป - เปิด overflow:visible ให้มงกุฎยื่นออกได้ */
     .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease;position:relative;overflow:visible;}
     .member-card:hover{border-color:rgba(255,42,42,.5);transform:translateY(-2px)}
     .member-card.hidden{display:none !important}
     
-    /* สไตล์การ์ด FOUNDER - ปรับความกว้างเป็น 100% เต็มกรอบ */
     .member-card.founder{
       border-color:rgba(255,208,0,.5);
       background:linear-gradient(145deg,#160d0d,#261505);
@@ -91,7 +90,6 @@
     .member-card.founder .member-avatar{width:80px;height:80px;font-size:24px;background:linear-gradient(135deg,#a07800,#ffd000);color:#1a1200}
     .member-card.founder .member-name{font-size:18px}
     
-    /* ไอคอนมงกุฎ ลอยอยู่นอกมุมขวาบน */
     .crown-icon {
       position: absolute;
       top: -22px;
@@ -112,7 +110,6 @@
     .group-section.leaders .group-title{color:var(--gold)}
     .group-section.members-group .group-title{color:var(--red-light)}
     
-    /* จัดการ์ดย่อยให้อยู่ตรงกลางทุกกรณี */
     .group-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
     .group-inner .member-card{flex:0 0 calc(16.666% - 12px);min-width:150px;max-width:180px}
     
@@ -132,7 +129,6 @@
     .fb-btn{color:var(--red-light);border:1px solid rgba(255,42,42,.3);background:rgba(255,42,42,.05)}
     .fb-btn:hover{background:rgba(255,42,42,.2);color:#fff}
     
-    /* STREAM PLATFORM BUTTONS */
     .stream-btn{color:#fff;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
     .stream-btn.kick{color:#53fc18;border-color:rgba(83,252,24,.4);background:rgba(83,252,24,.08)}
     .stream-btn.kick:hover{background:#53fc18;color:#000}
@@ -143,7 +139,6 @@
     .stream-btn.tiktok{color:#25f4ee;border-color:rgba(37,244,238,.4);background:rgba(37,244,238,.08)}
     .stream-btn.tiktok:hover{background:#25f4ee;color:#000}
 
-    /* REALTIME LIVE HIGHLIGHTS */
     .member-card.is-live-now {
       border-color: rgba(255, 255, 255, 0.4) !important;
       background: linear-gradient(145deg, #1f1111, #160d0d);
