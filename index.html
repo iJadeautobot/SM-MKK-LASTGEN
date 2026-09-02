@@ -217,7 +217,7 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-tag">LAST GEN</div>
+  <div class="hero-tag">MKK - LAST GEN</div>
   <h1 class="hero-title">WE ARE<br><span>MONKEY KING</span></h1>
   <div class="live-counter">
     <div class="live-dot"></div>
@@ -439,7 +439,7 @@ async function loadMembers() {
     const total = allMembers.length;
     document.getElementById('liveCount').textContent = total + ' PLAYERS';
     //document.getElementById('memberDesc').textContent = total + ' Players In MKK LAST GEN';
-    document.getElementById('resultCount').textContent = 'แสดง ' + total + ' / ' + total + ' คน';
+    //document.getElementById('resultCount').textContent = 'แสดง ' + total + ' / ' + total + ' คน';
     document.getElementById('searchWrap').style.display = '';
     
     const grid = document.createElement('div');
@@ -561,7 +561,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('youtube-player', {
     height: '0', width: '0', videoId: 'CNfNLb0G5hM',
     playerVars: {autoplay:0, controls:0, loop:1, playlist:'CNfNLb0G5hM', rel:0},
-    events: {onReady: function(e){ e.target.setVolume(15); }}
+    events: {onReady: function(e){ e.target.setVolume(10); }}
   });
 }
 function enterSite() {
