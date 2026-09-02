@@ -60,32 +60,32 @@
     .divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,42,42,.2),transparent);margin:0 2rem}
     
     .section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
-    .section-title{font-size:28px;font-weight:700;margin-bottom:.5rem;letter-spacing:-.5px;color:#fff;text-align:center}
-    .section-desc{color:var(--muted);font-size:14px;margin-bottom:1.75rem;text-align:center}
+    .section-title{font-size:28px;font-weight:700;margin-bottom:.5rem;letter-spacing:-.5px;color:#fff;text-align:left}
+    .section-desc{color:var(--muted);font-size:14px;margin-bottom:1.75rem;text-align:left}
     .loading-state{text-align:center;padding:3rem;color:var(--muted);font-family:'Space Mono',monospace;font-size:13px}
     .loading-spinner{width:30px;height:30px;border:2px solid rgba(255,42,42,.2);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
     @keyframes spin{to{transform:rotate(360deg)}}
     .error-state{text-align:center;padding:2rem;color:#ff6b6b;font-family:'Space Mono',monospace;font-size:12px;border:1px solid rgba(255,107,107,.2);border-radius:12px;background:rgba(255,107,107,.05)}
     
-    /* ส่วนค้นหาปรับชิดซ้าย */
-    .search-wrap{position:relative;margin:0 auto 0.5rem 0;max-width:500px;width:100%}
-    .search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none}
-    .search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px 12px 42px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+    /* ปรับช่อง search ให้ยาว 100% เท่ากับขนาดกล่องหลักด้านล่าง */
+    .search-wrap{position:relative;margin:0 0 1.5rem 0;width:100%;max-width:100%}
+    .search-wrap svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);pointer-events:none}
+    .search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px 14px 46px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:15px;outline:none;transition:border-color .2s}
     .search-wrap input:focus{border-color:rgba(255,42,42,.5)}
     .search-wrap input::placeholder{color:#553333}
-    .result-count{font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:1.25rem;text-align:left}
     
-    .members-grid{display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+    /* ซ่อนข้อความแสดงจำนวน */
+    .result-count{display:none !important;}
     
-    .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease;position:relative;overflow:visible;}
+    .members-grid{display:flex;flex-direction:column;align-items:flex-start;gap:20px;width:100%}
+    
+    .member-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .3s ease;position:relative;overflow:visible;width:100%;}
     .member-card:hover{border-color:rgba(255,42,42,.5);transform:translateY(-2px)}
     .member-card.hidden{display:none !important}
     
     .member-card.founder{
       border-color:rgba(255,208,0,.5);
       background:linear-gradient(145deg,#160d0d,#261505);
-      width:100%;
-      max-width:100%;
     }
     .member-card.founder .member-avatar{width:80px;height:80px;font-size:24px;background:linear-gradient(135deg,#a07800,#ffd000);color:#1a1200}
     .member-card.founder .member-name{font-size:18px}
@@ -94,8 +94,8 @@
       position: absolute;
       top: -22px;
       right: -18px;
-      width: 65px;
-      height: 65px;
+      width: 100px;
+      height: 100px;
       fill: var(--gold);
       transform: rotate(25deg);
       filter: drop-shadow(0 0 8px rgba(255, 208, 0, 0.7));
@@ -104,25 +104,28 @@
     }
     
     .group-section{width:100%;border-radius:14px;padding:1.5rem 1.2rem}
+    .group-section.founders-group{background:rgba(255,208,0,.05);border:1px solid rgba(255,208,0,.3)}
     .group-section.leaders{background:rgba(255,208,0,.03);border:1px solid rgba(255,208,0,.15)}
     .group-section.members-group{background:rgba(255,42,42,.02);border:1px solid rgba(255,42,42,.12)}
-    .group-title{font-size:12px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;text-align:center}
+    .group-title{font-size:12px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;text-align:left}
+    .group-section.founders-group .group-title{color:var(--gold)}
     .group-section.leaders .group-title{color:var(--gold)}
     .group-section.members-group .group-title{color:var(--red-light)}
     
-    .group-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
-    .group-inner .member-card{flex:0 0 calc(16.666% - 12px);min-width:150px;max-width:180px}
+    /* แสดงผลคอลัมน์ละ 5 คน */
+    .group-inner{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
     
     .member-card.co-leader{border-color:rgba(255,208,0,.25);background:rgba(255,208,0,.02)}
     .member-card.co-leader .member-avatar{background:linear-gradient(135deg,#800000,#ff2a2a);color:#fff}
     
-    .role-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:20px;margin-bottom:10px}
-    .badge-founder{color:var(--gold);background:rgba(255,208,0,.12);border:1px solid rgba(255,208,0,.35)}
-    .badge-leader{color:var(--gold);background:rgba(255,208,0,.07);border:1px solid rgba(255,208,0,.2)}
-    
     .member-avatar{width:65px;height:65px;border-radius:50%;background:linear-gradient(135deg,#4a0d0d,#990000);display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;font-size:18px;font-weight:700;color:var(--red-light);font-family:'Space Mono',monospace;overflow:hidden;border:2px solid rgba(255,255,255,.08)}
     .member-avatar img{width:100%;height:100%;object-fit:cover}
-    .member-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:10px;line-height:1.3}
+    .member-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:10px;line-height:1.3;word-break:break-word}
     
     .card-actions{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:8px}
     .action-btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;font-size:10px;padding:5px 12px;border-radius:20px;text-decoration:none;font-family:'Space Mono',monospace;transition:all .2s;font-weight:700;width:100%;max-width:110px}
@@ -142,7 +145,6 @@
     .member-card.is-live-now {
       border-color: rgba(255, 255, 255, 0.4) !important;
       background: linear-gradient(145deg, #1f1111, #160d0d);
-      order: -1;
     }
     
     .member-card.is-live-now .stream-btn {
@@ -193,13 +195,8 @@
       50% { box-shadow: 0 0 22px rgba(37,244,238,1); }
     }
 
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    @media(max-width:600px){
-      .contact-grid{grid-template-columns:1fr}
-      .group-inner .member-card{flex:0 0 calc(50% - 10px);min-width:130px}
-    }
-    
-    .social-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color .2s,transform .15s}
+    .contact-grid{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:1rem}
+    .social-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color .2s,transform .15s;flex:0 0 calc(50% - 0.5rem);min-width:280px}
     .social-card:hover{transform:translateY(-2px);border-color:rgba(255,42,42,.4)}
     .social-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,42,42,.1)}
     .social-info{flex:1;min-width:0}
@@ -207,6 +204,14 @@
     .social-handle{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .social-arrow{color:var(--dim);font-size:16px;transition:color .2s}
     .social-card:hover .social-arrow{color:var(--red)}
+    
+    @media(max-width:1024px){
+      .group-inner{grid-template-columns: repeat(3, 1fr);}
+    }
+    @media(max-width:650px){
+      .social-card{flex:1 1 100%}
+      .group-inner{grid-template-columns: repeat(2, 1fr);}
+    }
     
     footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:1px}
     footer span{color:var(--red);font-weight:700}
@@ -240,7 +245,7 @@
 
 <div class="section" id="members">
   <div class="search-wrap" id="searchWrap" style="display:none">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#886666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#886666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="text" id="searchInput" placeholder="ค้นหาสมาชิก MKK..." oninput="filterMembers()">
   </div>
   <div class="result-count" id="resultCount"></div>
@@ -255,7 +260,7 @@
   <h2 class="section-title">CONTACT US</h2>
   <p class="section-desc">ติดตามพวกเรา Monkey King (MKK) ได้ตามช่องทางนี้</p>
   <div class="contact-grid" id="contactContainer">
-    <div class="loading-state" style="grid-column:1/-1"><div class="loading-spinner"></div>กำลังดึงข้อมูลช่องทางติดต่อ...</div>
+    <div class="loading-state" style="width:100%"><div class="loading-spinner"></div>กำลังดึงข้อมูลช่องทางติดต่อ...</div>
   </div>
 </div>
 
@@ -277,6 +282,13 @@ async function fetchSheet(tab) {
   const m = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);?\s*$/);
   if (!m) throw new Error('Invalid sheet response for ' + (tab||'default'));
   return JSON.parse(m[1]).table.rows || [];
+}
+
+function getCellValue(cell) {
+  if (!cell) return '';
+  if (cell.v !== null && cell.v !== undefined) return cell.v.toString().trim();
+  if (cell.f !== null && cell.f !== undefined) return cell.f.toString().trim();
+  return '';
 }
 
 function getInitials(name) {
@@ -332,10 +344,6 @@ async function updateRealtimeStatus() {
     return { card, isLive, platform };
   }));
 
-  document.querySelectorAll('.stream-btn').forEach(btn => {
-    btn.style.animation = 'none';
-  });
-
   statusResults.forEach(({ card, isLive, platform }) => {
     const btn = card.querySelector('.stream-btn');
     if (isLive) {
@@ -350,11 +358,6 @@ async function updateRealtimeStatus() {
         else if (platform.includes('TIKTOK')) btn.innerHTML = '⚫ TIKTOK';
       }
     }
-  });
-
-  void document.body.offsetHeight;
-  document.querySelectorAll('.member-card.is-live-now .stream-btn').forEach(btn => {
-    btn.style.animation = '';
   });
 }
 
@@ -426,12 +429,12 @@ async function loadMembers() {
     let num = 1;
     rows.forEach(function(row) {
       const c = row.c || [];
-      const name = (c[0] && c[0].v) ? c[0].v.toString().trim() : '';
-      const role = (c[1] && c[1].v) ? c[1].v.toString().trim().toLowerCase() : 'member';
-      const img   = (c[2] && c[2].v) ? c[2].v.toString().trim() : '';
-      const facebook = (c[3] && c[3].v) ? c[3].v.toString().trim() : '';
-      const stream   = (c[4] && c[4].v) ? c[4].v.toString().trim() : '';
-      const platform = (c[5] && c[5].v) ? c[5].v.toString().trim() : '';
+      const name     = getCellValue(c[0]);
+      const role     = getCellValue(c[1]).toLowerCase() || 'member';
+      const img      = getCellValue(c[2]);
+      const facebook = getCellValue(c[3]);
+      const stream   = getCellValue(c[4]);
+      const platform = getCellValue(c[5]);
 
       if (!name) return;
       const m = {n: num++, name: name, role: role, img: img, facebook: facebook, stream: stream, platform: platform};
@@ -440,8 +443,8 @@ async function loadMembers() {
       else members.push(m);
     });
     
-    const az = function(a, b) { return a.name.localeCompare(b.name); };
-    leaders.sort(az); members.sort(az);
+    const az = function(a, b) { return a.name.localeCompare(b.name, undefined, {numeric: true, sensitivity: 'base'}); };
+    founders.sort(az); leaders.sort(az); members.sort(az);
     allMembers = founders.concat(leaders).concat(members);
     
     const total = allMembers.length;
@@ -452,7 +455,15 @@ async function loadMembers() {
     grid.className = 'members-grid';
     grid.id = 'membersGrid';
     
-    founders.forEach(function(m) { grid.appendChild(makeCard(m, 'founder')); });
+    if (founders.length) {
+      const box = document.createElement('div');
+      box.className = 'group-section founders-group';
+      box.innerHTML = '<div class="group-title">Founders</div>';
+      const inner = document.createElement('div');
+      inner.className = 'group-inner';
+      founders.forEach(function(m) { inner.appendChild(makeCard(m, 'founder')); });
+      box.appendChild(inner); grid.appendChild(box);
+    }
     
     if (leaders.length) {
       const box = document.createElement('div');
@@ -491,22 +502,16 @@ function filterMembers() {
   const q = input ? input.value.toLowerCase().trim() : '';
   const grid = document.getElementById('membersGrid');
   if (!grid) return;
-  let count = 0;
-  grid.querySelectorAll('.member-card.founder').forEach(function(c) {
-    const show = c.dataset.name.includes(q);
-    c.classList.toggle('hidden', !show);
-    if (show) count++;
-  });
+  
   grid.querySelectorAll('.group-section').forEach(function(box) {
     let visible = 0;
     box.querySelectorAll('.member-card').forEach(function(c) {
       const show = c.dataset.name.includes(q);
       c.classList.toggle('hidden', !show);
-      if (show) { count++; visible++; }
+      if (show) { visible++; }
     });
     box.style.display = visible === 0 ? 'none' : '';
   });
-  document.getElementById('resultCount').textContent = 'แสดง ' + count + ' / ' + allMembers.length + ' คน';
 }
 
 const FB_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#ff2a2a"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
@@ -535,8 +540,7 @@ function makeSocialCard(item) {
 
 function rowToItem(row) {
   const c = row.c || [];
-  const val = function(i){ return (c[i] && c[i].v != null) ? c[i].v.toString().trim() : ''; };
-  return { name: val(0), url: val(1), handle: val(2), type: val(3) };
+  return { name: getCellValue(c[0]), url: getCellValue(c[1]), handle: getCellValue(c[2]), type: getCellValue(c[3]) };
 }
 
 async function loadSocial(tab, containerId, emptyText) {
@@ -545,12 +549,12 @@ async function loadSocial(tab, containerId, emptyText) {
     const rows = await fetchSheet(tab);
     const items = rows.map(rowToItem).filter(function(x){ return x.name && x.url; });
     if (!items.length) {
-      container.innerHTML = '<div class="loading-state" style="grid-column:1/-1">' + emptyText + '</div>';
+      container.innerHTML = '<div class="loading-state" style="width:100%">' + emptyText + '</div>';
       return;
     }
     container.innerHTML = items.map(makeSocialCard).join('');
   } catch(err) {
-    container.innerHTML = '<div class="error-state" style="grid-column:1/-1">&#9888;&#65039; โหลดแท็บ "' + tab + '" ไม่ได้<br><small>' + err.message + '</small></div>';
+    container.innerHTML = '<div class="error-state" style="width:100%">&#9888;&#65039; โหลดแท็บ "' + tab + '" ไม่ได้<br><small>' + err.message + '</small></div>';
   }
 }
 
