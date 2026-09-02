@@ -228,7 +228,7 @@
 <div class="divider"></div>
 
 <div class="section" id="members">
-  <h2 class="section-title">ALL MEMBERS</h2>
+  <!--h2 class="section-title">ALL MEMBERS</h2-->
   <p class="section-desc" id="memberDesc">กำลังโหลดข้อมูลจาก Google Sheets...</p>
   <div class="search-wrap" id="searchWrap" style="display:none">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#886666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -438,7 +438,7 @@ async function loadMembers() {
     
     const total = allMembers.length;
     document.getElementById('liveCount').textContent = total + ' PLAYERS';
-    document.getElementById('memberDesc').textContent = total + ' Players In MKK LAST GEN';
+    //document.getElementById('memberDesc').textContent = total + ' Players In MKK LAST GEN';
     document.getElementById('resultCount').textContent = 'แสดง ' + total + ' / ' + total + ' คน';
     document.getElementById('searchWrap').style.display = '';
     
